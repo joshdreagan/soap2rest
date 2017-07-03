@@ -1,0 +1,38 @@
+# Spring Boot
+spring:
+  datasource:
+    xa.dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+    url: jdbc:mysql://localhost:3306/example?autoReconnect=true&useSSL=false
+    username: root
+    password: Abcd1234
+    schema: classpath:META-INF/sql/schema.sql
+    schemaUsername: ${spring.datasource.username}
+    schemaPassword: ${spring.datasource.password}
+    data: classpath:META-INF/sql/data.sql
+    dataUsername: ${spring.datasource.username}
+    dataPassword: ${spring.datasource.password}
+
+# Camel Spring Boot
+camel:
+  springboot:
+    name: soap2rest
+  component:
+    cxf:
+      allowStreaming: true
+    xslt:
+      saxon: true
+
+# Logging
+logging:
+  level:
+    #org.apache.camel: DEBUG
+
+# Application
+application:
+  soap:
+    bindAddress: /soap/OrderService
+  rest:
+    address: http://192.168.0.10:8080/nodejs/rest/orders
+  sql:
+    customersTable: CUSTOMERS
+    itemsTable: ITEMS
